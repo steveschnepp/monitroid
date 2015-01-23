@@ -1,16 +1,18 @@
 package com.munin.monitdroid;
 
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.os.IBinder;
 import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.WindowManager;
-import android.widget.ImageView;
 
 public class OverlayService extends Service {
 	private WindowManager windowManager;
-	private ImageView imageView;
+	private View bar;
 
 	@Override public IBinder onBind(Intent intent) {
 		// Not used
@@ -22,8 +24,10 @@ public class OverlayService extends Service {
 
 		windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
 
-		imageView = new ImageView(this);
-		imageView.setImageResource(R.drawable.ic_launcher);
+		// Inflate bar XML
+		LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+		bar = inflater.inflate(R.layout.overlaybar, null);
+
 
 		WindowManager.LayoutParams params = new WindowManager.LayoutParams(
 				WindowManager.LayoutParams.WRAP_CONTENT,
@@ -34,14 +38,14 @@ public class OverlayService extends Service {
 
 		params.gravity = Gravity.TOP | Gravity.LEFT;
 		params.x = 0;
-		params.y = 100;
+		params.y = Util.getStatusBarHeight(this);
 
-		windowManager.addView(imageView, params);
+		windowManager.addView(bar, params);
 	}
 
 	@Override
 	public void onDestroy() {
 		super.onDestroy();
-		if (imageView != null) windowManager.removeView(imageView);
+		if (bar != null) windowManager.removeView(bar);
 	}
 }
