@@ -1,4 +1,4 @@
-package com.munin.monitodroid;
+package com.munin.monitdroid;
 
 import android.content.Intent;
 import android.support.v7.app.ActionBarActivity;

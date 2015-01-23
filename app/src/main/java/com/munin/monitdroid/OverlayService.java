@@ -1,4 +1,4 @@
-package com.munin.monitodroid;
+package com.munin.monitdroid;
 
 import android.app.Service;
 import android.content.Intent;
