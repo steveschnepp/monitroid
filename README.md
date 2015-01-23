@@ -1,2 +1,2 @@
-# monitodroid
+# monitroid
 Monitoring your Droid
