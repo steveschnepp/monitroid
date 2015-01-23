@@ -23,6 +23,7 @@
 		android:layout_margin="5dp">
 
 		<View
+			android:id="@+id/cpuBar"
 			android:layout_width="60dp"
 			android:layout_height="match_parent"
 			android:background="#999999"
